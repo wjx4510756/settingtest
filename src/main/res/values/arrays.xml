@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="item_array">
+
+        <item></item>
+
+        <item>离线模式</item>
+        <item>WLAN</item>
+        <item>双卡与移动网络</item>
+        <item>个人热点</item>
+        <item>蓝牙</item>
+
+
+        <item></item>
+
+        <item>状态栏与通知</item>
+        <item>勿扰模式</item>
+        <item>游戏模式</item>
+        <item>声音</item>
+        <item>显示与亮度</item>
+        <item>壁纸与字体</item>
+
+        <item></item>
+
+        <item>系统升级</item>
+        <item>指纹、面部与密码</item>
+        <item>电池</item>
+        <item>定位服务</item>
+        <item>运存与存储空间</item>
+        <item>更多设置</item>
+
+        <item></item>
+
+        <item>账户与同步</item>
+        <item>电话</item>
+        <item>联系人</item>
+        <item>信息</item>
+        <item>相册</item>
+        <item>日历</item>
+        <item>vivoice</item>
+
+        <item></item>
+
+    </string-array>
+
+
+    <string-array name="sound_title_array">
+
+        <item></item>
+
+        <item>静音</item>
+        <item>振动</item>
+
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+
+        <item>音量键调整</item>
+
+        <item></item>
+        <item></item>
+
+        <item>联通1来电铃声</item>
+        <item>联通1信息铃声</item>
+        <item>日历提醒</item>
+        <item>通知铃声</item>
+        <item>来电铃声渐强</item>
+
+        <item></item>
+
+        <item>拨号提示音</item>
+        <item>触屏提示音</item>
+        <item>锁屏提示音</item>
+        <item>信息发送成功提示音</item>
+        <item>内置输入法按键音</item>
+
+        <item></item>
+
+    </string-array>
+
+
+    <string-array name="more_title_array">
+
+        <item></item>
+
+        <item>关于手机</item>
+        <item>应用程序</item>
+        <item>权限管理</item>
+
+        <item></item>
+
+        <item>全局搜索</item>
+        <item>控制中心</item>
+        <item>安全</item>
+
+        <item></item>
+
+        <item>媒体共享</item>
+        <item>VPN</item>
+        <item>OTG</item>
+
+        <item></item>
+
+        <item>自动锁屏</item>
+        <item>指示灯</item>
+
+        <item></item>
+
+        <item>日期与时间</item>
+        <item>语言</item>
+        <item>输入法</item>
+        <item>定时任务</item>
+
+        <item></item>
+
+        <item>恢复出厂设置</item>
+
+        <item></item>
+
+        <item>说明书</item>
+        <item>服务网点</item>
+        <item>电子保修卡</item>
+        <item>用户体验改进计划</item>
+        <item>辅助功能</item>
+
+        <item></item>
+
+    </string-array>
+
+</resources>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView"
+        android:minHeight="?attr/actionBarSize"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/toolbar_height"
+        android:gravity="center"
+        android:text="@string/setting"
+        android:textColor="@color/black"
+        android:textSize="@dimen/title_text_size" />
+
+    <ImageView
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/divider_line"
+        />
+
+ <ListView
+     android:divider="@null"
+     android:id="@+id/id_listView"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent">
+
+ </ListView>
+
+
+</LinearLayout>

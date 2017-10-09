@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">SettingTest</string>
+    <string name="setting">设置</string>
+    <string name="offline">离线模式</string>
+    <string name="sound">声音</string>
+    <string name="test">测试</string>
+    <string name="defaultW">默认</string>
+    <string name="tip">侧音量键可控制来电、信息和通知的音量</string>
+    <string name="system_ring">系统铃声</string>
+</resources>

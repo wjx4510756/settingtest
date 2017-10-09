@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingStart="@dimen/list_padding">
+
+    <ImageView
+        android:id="@+id/id_imageView"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/image_dimen"
+        android:layout_weight="1"
+        android:padding="5dp"
+        tools:src="@drawable/ic_settings_airplane_item" />
+
+    <LinearLayout
+        android:paddingStart="@dimen/list_padding"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="7"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/image_dimen">
+
+            <TextView
+                android:id="@+id/id_title"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/image_dimen"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                tools:text="@string/offline" />
+
+
+            <Switch
+                android:id="@+id/id_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:paddingEnd="@dimen/list_padding" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/id_divider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/divider_line" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
+
