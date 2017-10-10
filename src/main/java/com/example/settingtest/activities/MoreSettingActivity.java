@@ -65,12 +65,13 @@ public class MoreSettingActivity extends AppCompatActivity {
 
                 switch (i) {
                     case 1:
-
+                        Intent intent = new Intent(MoreSettingActivity.this, AboutActivity.class);
+                        startActivity(intent);
 
                         break;
                     case 2:
-                        Intent intent = new Intent(MoreSettingActivity.this, AppsActivity.class);
-                        startActivity(intent);
+                        Intent intent1 = new Intent(MoreSettingActivity.this, AppsActivity.class);
+                        startActivity(intent1);
                         break;
                     case 3:
 
