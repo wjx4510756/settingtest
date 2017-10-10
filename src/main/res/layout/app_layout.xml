@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -10,6 +9,8 @@
     <include layout="@layout/divider" />
 
     <RelativeLayout
+        android:id="@+id/id_installed"
+        android:onClick="onClick"
         android:layout_width="match_parent"
         android:layout_height="@dimen/image_dimen">
 
@@ -43,6 +44,8 @@
         android:background="@drawable/divider_line" />
 
     <RelativeLayout
+        android:id="@+id/id_all"
+        android:onClick="onClick"
         android:layout_width="match_parent"
         android:layout_height="@dimen/image_dimen">
 
@@ -76,6 +79,8 @@
         android:background="@drawable/divider_line" />
 
     <RelativeLayout
+        android:id="@+id/id_default"
+        android:onClick="onClick"
         android:layout_width="match_parent"
         android:layout_height="@dimen/image_dimen">
 
@@ -109,6 +114,8 @@
         android:background="@drawable/divider_line" />
 
     <RelativeLayout
+        android:id="@+id/id_system"
+        android:onClick="onClick"
         android:layout_width="match_parent"
         android:layout_height="@dimen/image_dimen">
 

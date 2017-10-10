@@ -11,4 +11,9 @@
     <string name="all">全部</string>
     <string name="default_setting">默认应用设置</string>
     <string name="system_setting">修改系统设置</string>
+    <string name="more_settings">更多设置</string>
+    <string name="tip1">按大小排序</string>
+    <string name="apps">应用程序</string>
+    <string name="about_phone">关于手机</string>
 </resources>
+
