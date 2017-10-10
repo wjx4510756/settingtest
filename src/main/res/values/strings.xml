@@ -7,4 +7,8 @@
     <string name="defaultW">默认</string>
     <string name="tip">侧音量键可控制来电、信息和通知的音量</string>
     <string name="system_ring">系统铃声</string>
+    <string name="installed">已安装</string>
+    <string name="all">全部</string>
+    <string name="default_setting">默认应用设置</string>
+    <string name="system_setting">修改系统设置</string>
 </resources>

@@ -1,9 +1,13 @@
 package com.example.settingtest.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.settingtest.R;
 import com.example.settingtest.adapter.MoreAdapter;
@@ -36,6 +40,26 @@ public class MoreSettingActivity extends AppCompatActivity {
         mListView = (ListView) findViewById(R.id.id_listView);
         MoreAdapter adapter = new MoreAdapter(this, mList);
         mListView.setAdapter(adapter);
+
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                switch (i) {
+                    case 1:
+
+                        break;
+                    case 2:
+                        Intent intent = new Intent(MoreSettingActivity.this, AppsActivity.class);
+                        startActivity(intent);
+                        break;
+                    case 3:
+
+                        break;
+                    default:
+                        Toast.makeText(MoreSettingActivity.this, mList.get(i).getTitle(), Toast.LENGTH_LONG).show();
+                }
+            }
+        });
 
     }
 
