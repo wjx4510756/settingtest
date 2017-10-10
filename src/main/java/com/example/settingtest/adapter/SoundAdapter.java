@@ -229,6 +229,7 @@ public class SoundAdapter extends BaseAdapter {
 
         holderNormal.textView.setText(item.getTitle());
 
+
         holderNormal.mSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -244,9 +245,9 @@ public class SoundAdapter extends BaseAdapter {
 
         //防止复用View中分割线显示混乱问题
         if (item.isShowDivider())
-            holderNormal.divider.setVisibility(View.GONE);
-        else
             holderNormal.divider.setVisibility(View.VISIBLE);
+        else
+            holderNormal.divider.setVisibility(View.GONE);
 
         return view;
     }

@@ -18,7 +18,9 @@
             android:maxLines="1"
             android:padding="@dimen/list_padding"
             android:textColor="@color/black"
-            tools:text="@string/test" />
+            tools:text="@string/test"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" />
 
         <TextView
             android:id="@+id/id_content"

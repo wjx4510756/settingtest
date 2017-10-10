@@ -7,9 +7,10 @@
     android:paddingStart="@dimen/list_padding">
 
     <ImageView
+        android:layout_gravity="center"
         android:id="@+id/id_imageView"
         android:layout_width="0dp"
-        android:layout_height="@dimen/image_dimen"
+        android:layout_height="@dimen/image_dimen_small"
         android:layout_weight="1"
         android:padding="5dp"
         tools:src="@drawable/ic_settings_airplane_item" />

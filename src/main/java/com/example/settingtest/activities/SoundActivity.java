@@ -1,18 +1,23 @@
 package com.example.settingtest.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.media.RingtoneManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.example.settingtest.MyApplication;
 import com.example.settingtest.R;
 import com.example.settingtest.adapter.SoundAdapter;
 import com.example.settingtest.bean.SoundItem;
+import com.example.settingtest.utils.RingUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,13 +30,25 @@ public class SoundActivity extends AppCompatActivity {
 
     private int[] images;
     private List<SoundItem> mList;
+    private SoundAdapter soundAdapter;
 
     private static final String PHONE_RING = "phone";
     private static final String SMS_RING = "sms";
     private static final String CALENDAR_RING = "calendar";
     private static final String NOTIFY_RING = "notify";
 
+    private String phoneRing;
+    private String smsRing;
+    private String calendarRing;
+    private String notifyRing;
+
+    private SharedPreferences preferences;
+
+    private RingUtils ringUtils;
+
+
     private ListView mListView;
+    private ImageView back;
 
     private AudioManager audioManager;
 
@@ -47,8 +64,18 @@ public class SoundActivity extends AppCompatActivity {
     }
 
     private void initView() {
+
+        back = (ImageView) findViewById(R.id.id_back);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         mListView = (ListView) findViewById(R.id.id_sound_list);
-        SoundAdapter soundAdapter = new SoundAdapter(this, mList);
+        soundAdapter = new SoundAdapter(this, mList);
         mListView.setAdapter(soundAdapter);
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -60,23 +87,24 @@ public class SoundActivity extends AppCompatActivity {
                     case 11:
                         intent.putExtra("type", RingtoneManager.TYPE_RINGTONE);
                         intent.putExtra("title", mList.get(11).getTitle());
-                        intent.putExtra("from",11);
-                        startActivity(intent);
+                        intent.putExtra("from", 11);
+                        startActivityForResult(intent, i);
                         break;
                     case 12:
-                        intent.putExtra("from",12);
+                        intent.putExtra("from", 12);
                         intent.putExtra("title", mList.get(12).getTitle());
-                        startActivity(intent);
+                        startActivityForResult(intent, i);
+
                         break;
                     case 13:
-                        intent.putExtra("from",13);
+                        intent.putExtra("from", 13);
                         intent.putExtra("title", mList.get(13).getTitle());
-                        startActivity(intent);
+                        startActivityForResult(intent, i);
                         break;
                     case 14:
-                        intent.putExtra("from",14);
+                        intent.putExtra("from", 14);
                         intent.putExtra("title", mList.get(14).getTitle());
-                        startActivity(intent);
+                        startActivityForResult(intent, i);
                         break;
                 }
 
@@ -88,6 +116,8 @@ public class SoundActivity extends AppCompatActivity {
     private void initData() {
 
         audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
+        ringUtils = new RingUtils();
+
         int currentRingVolume = audioManager.getStreamVolume(AudioManager.STREAM_RING);
 //        int currentMusicVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
 //        int currentAlarmVolume = audioManager.getStreamVolume(AudioManager.STREAM_ALARM);
@@ -102,6 +132,19 @@ public class SoundActivity extends AppCompatActivity {
         images[5] = R.drawable.ic_settings_sound_music;
         images[6] = R.drawable.ic_settings_sound_alarm;
 
+
+        preferences = MyApplication.getPreferences();
+        String defaultW = getResources().getString(R.string.defaultW);
+
+//        phoneRing = preferences.getString("phoneRing", defaultW);
+        phoneRing = ringUtils.getCurrentRing(RingtoneManager.TYPE_RINGTONE);
+
+        smsRing = preferences.getString("smsRing", defaultW);
+//        smsRing = ringUtils.getCurrentRing(RingtoneManager.TYPE_NOTIFICATION);
+
+        calendarRing = preferences.getString("calendarRing", defaultW);
+        notifyRing = preferences.getString("notifyRing", defaultW);
+
         String[] strings = getResources().getStringArray(R.array.sound_title_array);
 
         for (int i = 0; i < images.length; i++) {
@@ -110,6 +153,7 @@ public class SoundActivity extends AppCompatActivity {
             item.setImage(images[i]);
             item.setContent(getResources().getString(R.string.defaultW));
             item.setSelect(false);
+            item.setShowDivider(true);
             switch (i) {
                 case 0:
                 case 3:
@@ -126,10 +170,22 @@ public class SoundActivity extends AppCompatActivity {
                     item.setType(SoundAdapter.TYPE_SPECIAL);
                     break;
                 case 8:
+                    item.setType(SoundAdapter.TYPE_MORE);
+                    break;
                 case 11:
+                    item.setContent(phoneRing);
+                    item.setType(SoundAdapter.TYPE_MORE);
+                    break;
                 case 12:
+                    item.setContent(smsRing);
+                    item.setType(SoundAdapter.TYPE_MORE);
+                    break;
                 case 13:
+                    item.setContent(calendarRing);
+                    item.setType(SoundAdapter.TYPE_MORE);
+                    break;
                 case 14:
+                    item.setContent(notifyRing);
                     item.setType(SoundAdapter.TYPE_MORE);
                     break;
                 case 1:
@@ -141,7 +197,41 @@ public class SoundActivity extends AppCompatActivity {
                     item.setType(SoundAdapter.TYPE_NORMAL);
                     break;
             }
+
+            switch (i) {
+                case 2:
+                case 6:
+                case 15:
+                case 21:
+                    item.setShowDivider(false);
+            }
             mList.add(item);
+        }
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.d("TAG", "onActivityResult: ");
+        if (resultCode == RESULT_OK) {
+
+            String ring = data.getStringExtra("ring");
+            switch (requestCode) {
+                case 11:
+                    mList.get(11).setContent(ring);
+                    break;
+                case 12:
+                    mList.get(12).setContent(ring);
+                    break;
+                case 13:
+                    mList.get(13).setContent(ring);
+                    break;
+                case 14:
+                    mList.get(14).setContent(ring);
+                    break;
+            }
+
+            soundAdapter.notifyDataSetChanged();
         }
 
     }
