@@ -130,6 +130,39 @@
 
     </string-array>
 
+    <string-array name="about_phone_array">
 
+        <item>型号</item>
+        <item>IMEI 1</item>
+        <item>IMEI 2</item>
+        <item>MEID</item>
+        <item>CMIIT ID</item>
+        <item>Android 版本</item>
+        <item>Android 安全补丁程序级别</item>
+        <item>处理器</item>
+        <item>CPU实时数据</item>
+        <item>运行内存</item>
+        <item>vivo ROM</item>
+        <item>软件版本号</item>
+        <item>基带版本</item>
+        <item>内核版本</item>
+        <item>编译时间</item>
+
+        <item></item>
+
+        <item>已用时间</item>
+        <item>电池状态</item>
+        <item>联通1状态信息</item>
+        <item>IP地址</item>
+        <item>WLAN MAC 地址</item>
+        <item>蓝牙地址</item>
+
+        <item></item>
+
+        <item>法律信息</item>
+
+        <item></item>
+
+    </string-array>
 
 </resources>

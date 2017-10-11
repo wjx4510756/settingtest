@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import com.example.settingtest.MyApplication;
 import com.example.settingtest.R;
 import com.example.settingtest.bean.Item;
 
@@ -88,7 +89,7 @@ public class MyAdapter extends BaseAdapter {
                 view = setViewHolderSpecial(i, view, viewGroup);
                 break;
             case TYPE_DIVIDER:
-                view = mInflater.inflate(R.layout.divider,viewGroup,false);
+                view = mInflater.inflate(R.layout.divider, viewGroup, false);
                 break;
         }
         return view;
@@ -147,9 +148,10 @@ public class MyAdapter extends BaseAdapter {
         Item item = mList.get(i);
         holder.imageView.setImageResource(item.getImage());
         holder.textView.setText(item.getTitle());
+
+        holder.mSwitch.setChecked(MyApplication.getPreferences().getBoolean("offline", false));
         return view;
     }
-
 
 
     class ViewHolderNormal {
