@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -77,6 +78,8 @@ public class AppListActivity extends AppCompatActivity {
         setContentView(R.layout.app_manager_layout);
 
         fromIntent = getIntent();
+
+        Log.d("thread", String.valueOf(Thread.currentThread()));
 
         initData();
         initView();

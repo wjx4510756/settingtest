@@ -71,6 +71,8 @@ public class AppUtils {
                                 message.what = 1;
                                 message.arg1 = finalI;
 
+                                Log.d("thread", String.valueOf(Thread.currentThread()));
+
 
 //                            //视觉效果
 //                            try {
