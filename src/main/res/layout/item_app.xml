@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+
+    android:paddingStart="@dimen/list_padding">
+
+    <ImageView
+        android:id="@+id/id_imageView"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/image_dimen_small"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+
+        tools:src="@mipmap/ic_launcher" />
+
+    <LinearLayout
+
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="7"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/image_dimen"
+            android:paddingStart="@dimen/list_padding">
+
+            <TextView
+                android:id="@+id/id_app"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:paddingTop="@dimen/list_padding"
+                android:textColor="@color/black"
+                tools:text="@string/test" />
+
+            <TextView
+
+                android:id="@+id/id_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/id_app"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:textSize="10sp"
+                tools:text="@string/test" />
+
+            <ImageView
+                android:id="@+id/id_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:paddingEnd="@dimen/list_padding"
+                android:src="@mipmap/spinner_bt1" />
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/id_divider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/list_padding"
+            android:src="@drawable/divider_line" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

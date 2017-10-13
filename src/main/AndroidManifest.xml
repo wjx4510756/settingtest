@@ -3,6 +3,8 @@
     package="com.example.settingtest">
 
     <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="android.permission.GET_PACKAGE_SIZE"/>
+
 
     <application
         android:name="com.example.settingtest.MyApplication"
@@ -30,16 +32,20 @@
 
         <activity
             android:name=".activities.MoreSettingActivity"
-            android:launchMode="singleInstance" />
+             />
         <activity
             android:name=".activities.AboutActivity"
-            android:launchMode="singleInstance" />
+             />
         <activity
-            android:name=".activities.AppManageActivity"
-            android:launchMode="singleInstance" />
+            android:name=".activities.AppListActivity"
+             />
         <activity
             android:name=".activities.AppsActivity"
-            android:launchMode="singleInstance" />
+           />
+
+        <activity android:name=".activities.AppManageActivity"/>
+
+        <activity android:name=".activities.AppStorageActivity"/>
 
     </application>
 

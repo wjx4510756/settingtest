@@ -9,23 +9,33 @@
 
 
     <ListView
+        android:layout_above="@+id/id_sort"
         android:id="@+id/id_listView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/title">
+        android:layout_below="@+id/title"
+        android:divider="@null">
 
     </ListView>
 
 
+    <ProgressBar
+        android:visibility="gone"
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+
+        />
     <View
         android:id="@+id/view"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_centerHorizontal="true"
-
         />
 
     <TextView
+        android:id="@+id/id_sort"
         android:layout_width="match_parent"
         android:layout_height="@dimen/image_dimen"
         android:layout_alignEnd="@+id/view"
@@ -43,7 +53,7 @@
         android:layout_alignStart="@+id/view"
         android:drawableTop="@drawable/divider_line"
         android:gravity="center"
-        android:text="@string/tip1"
+        android:text="@string/tip2"
         android:textColor="#54a9ff" />
 
 
