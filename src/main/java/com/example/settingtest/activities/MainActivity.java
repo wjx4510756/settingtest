@@ -146,12 +146,12 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
                 switch (i) {
-                    //声音
+                    //voice
                     case 10:
                         Intent intent = new Intent(MainActivity.this, SoundActivity.class);
                         startActivity(intent);
                         break;
-                    //更多设置
+                    //more settings
                     case 19:
                         intent = new Intent(MainActivity.this, MoreSettingActivity.class);
                         startActivity(intent);

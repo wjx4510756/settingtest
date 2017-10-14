@@ -30,6 +30,7 @@
             android:src="@color/gray" />
 
         <Button
+            android:id="@+id/id_unInstall"
             android:text="@string/unInstall"
             android:layout_width="0dp"
             android:layout_height="match_parent"

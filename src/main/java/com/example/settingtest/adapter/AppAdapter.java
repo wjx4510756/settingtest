@@ -10,7 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.settingtest.R;
-import com.example.settingtest.bean.AppItem;
+import com.example.settingtest.bean.AppBean;
+import com.example.settingtest.utils.AppUtils;
 
 import java.util.List;
 
@@ -23,9 +24,9 @@ public class AppAdapter extends BaseAdapter {
 
     private Context mContext;
     private LayoutInflater mInflater;
-    private List<AppItem> mList;
+    private List<AppBean> mList;
 
-    public AppAdapter(Context context, List<AppItem> list) {
+    public AppAdapter(Context context, List<AppBean> list) {
 
         mContext = context;
         mInflater = LayoutInflater.from(context);
@@ -70,10 +71,10 @@ public class AppAdapter extends BaseAdapter {
         } else
             holder = (ViewHolder) view.getTag();
 
-        AppItem item = mList.get(i);
+        AppBean item = mList.get(i);
         holder.icon.setImageDrawable(item.getIcon());
-        holder.content.setText(item.getContent());
-        holder.textView.setText(item.getTitle());
+        holder.content.setText(AppUtils.getSize(item.getAppSize()));
+        holder.textView.setText(item.getAppName());
 
 
 //        //防止复用view分割线显示不正确

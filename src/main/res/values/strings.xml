@@ -27,5 +27,8 @@
     <string name="data">数据</string>
     <string name="catchW">缓存</string>
     <string name="clear_catch">清除缓存</string>
+    <string name="sort_name">按名称排序</string>
+    <string name="sort_size">按大小排序</string>
+    <string name="app_message">应用程序信息</string>
 </resources>
 

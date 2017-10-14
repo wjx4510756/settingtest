@@ -5,10 +5,13 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.settingtest.R;
+import com.example.settingtest.utils.AppUtils;
 
 /**
  * Created by 11070562 on 2017/10/13.
@@ -18,8 +21,13 @@ public class AppStorageActivity extends AppCompatActivity {
 
     private Intent fromIntent;
 
+    private TextView title;
+
+
     private TextView data, catchSize, appSize, codeSize, appName;
-    private ImageView icon;
+    private ImageView icon, back;
+
+    private Button clearData, clearCatch;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -34,6 +42,16 @@ public class AppStorageActivity extends AppCompatActivity {
 
     private void initView() {
 
+        back = (ImageView) findViewById(R.id.id_back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+        title = (TextView) findViewById(R.id.id_title);
+        title.setText(R.string.storage);
 
         appName = (TextView) findViewById(R.id.id_app_name);
         icon = (ImageView) findViewById(R.id.id_icon);
@@ -48,9 +66,12 @@ public class AppStorageActivity extends AppCompatActivity {
 
         data.setText(fromIntent.getStringExtra("app_data_size"));
         catchSize.setText(fromIntent.getStringExtra("app_catch_size"));
-        appSize.setText(fromIntent.getStringExtra("app_size"));
+        appSize.setText(AppUtils.getSize(fromIntent.getLongExtra("app_size", 0)));
         codeSize.setText(fromIntent.getStringExtra("app_code_size"));
 
+
+        clearData = (Button) findViewById(R.id.id_clear_data);
+        clearCatch = (Button) findViewById(R.id.id_clear_catch);
 
     }
 }

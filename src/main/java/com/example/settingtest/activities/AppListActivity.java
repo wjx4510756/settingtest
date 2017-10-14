@@ -22,7 +22,6 @@ import android.widget.TextView;
 import com.example.settingtest.R;
 import com.example.settingtest.adapter.AppAdapter;
 import com.example.settingtest.bean.AppBean;
-import com.example.settingtest.bean.AppItem;
 import com.example.settingtest.bean.AppSizeBean;
 import com.example.settingtest.utils.AppUtils;
 
@@ -42,13 +41,18 @@ public class AppListActivity extends AppCompatActivity {
     private ProgressBar progressBar;
 
     private ListView mListView;
-    private List<AppItem> mList;
 
     private List<AppBean> mAppList;
     private List<AppBean> allApps;
+
+    private List<AppBean> list;
     private AppAdapter appAdapter;
 
+    private TextView sort;
+
     private Intent fromIntent;
+    private int from;
+    private boolean hadSort = false;
 
     private Handler handler = new Handler() {
 
@@ -59,12 +63,10 @@ public class AppListActivity extends AppCompatActivity {
                 AppSizeBean appSize = (AppSizeBean) msg.obj;
                 int i = msg.arg1;
 
-                mAppList.get(i).setAppSize(appSize.getAppSize());
-                mAppList.get(i).setCodeSize(appSize.getCodeSize());
-                mAppList.get(i).setDataSize(appSize.getDataSize());
-                mAppList.get(i).setCatchSize(appSize.getCatchSize());
-
-                mList.get(i).setContent(String.valueOf(appSize.getAppSize()));
+                list.get(i).setAppSize(appSize.getAppSize());
+                list.get(i).setCodeSize(appSize.getCodeSize());
+                list.get(i).setDataSize(appSize.getDataSize());
+                list.get(i).setCatchSize(appSize.getCatchSize());
 
                 appAdapter.notifyDataSetChanged();
             }
@@ -96,6 +98,44 @@ public class AppListActivity extends AppCompatActivity {
         mTitle = (TextView) findViewById(R.id.id_title);
         back = (ImageView) findViewById(R.id.id_back);
 
+
+        sort = (TextView) findViewById(R.id.id_sort);
+        sort.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (!hadSort) {
+
+                    Collections.sort(list, new Comparator<AppBean>() {
+                        @Override
+                        public int compare(AppBean appItem, AppBean t1) {
+
+                            if (appItem.getAppSize() > t1.getAppSize())
+                                return -1;
+                            else if (appItem.getAppSize() == t1.getAppSize())
+                                return 0;
+                            else
+                                return 1;
+                        }
+                    });
+                    sort.setText(R.string.sort_name);
+                } else {
+
+                    Collections.sort(list, new Comparator<AppBean>() {
+                        @Override
+                        public int compare(AppBean appBean, AppBean t1) {
+
+                            return appBean.getAppName().compareTo(t1.getAppName());
+                        }
+                    });
+                    sort.setText(R.string.sort_size);
+                }
+
+                hadSort = !hadSort;
+                appAdapter.notifyDataSetChanged();
+            }
+        });
+
         mTitle.setText(getIntent().getStringExtra("title"));
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,24 +144,31 @@ public class AppListActivity extends AppCompatActivity {
             }
         });
 
-        appAdapter = new AppAdapter(this, mList);
-        mListView.setAdapter(appAdapter);
-
-
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                AppBean appBean = mAppList.get(i);
+//                if ("".equals(getList(from).get(i).getContent())) {
+//                    return;
+//                }
+
+                AppBean appBean = list.get(i);
 
                 Intent intent = new Intent(AppListActivity.this, AppManageActivity.class);
                 intent.putExtra("app_name", appBean.getAppName());
                 intent.putExtra("app_version", appBean.getAppVersion());
-                intent.putExtra("app_icon", ((BitmapDrawable) appBean.getIcon()).getBitmap());
+                try {
+                    intent.putExtra("app_icon", ((BitmapDrawable) appBean.getIcon()).getBitmap());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    intent.putExtra("app_icon", (((BitmapDrawable) getResources().getDrawable(R.mipmap.ic_launcher)).getBitmap()));
+                }
                 intent.putExtra("app_catch_size", appBean.getCatchSize());
                 intent.putExtra("app_size", appBean.getAppSize());
                 intent.putExtra("app_data_size", appBean.getDataSize());
                 intent.putExtra("app_code_size", appBean.getCodeSize());
+                intent.putExtra("is_system", appBean.isSystem());
+                intent.putExtra("app_package", appBean.getAppPackage());
 
                 startActivity(intent);
             }
@@ -131,9 +178,13 @@ public class AppListActivity extends AppCompatActivity {
 
     private void initData() {
 
-        mList = new ArrayList<>();
+        from = fromIntent.getIntExtra("from", -1);
+
+        list = new ArrayList<>();
+
         mAppList = new ArrayList<>();
         allApps = new ArrayList<>();
+
 
     }
 
@@ -160,9 +211,10 @@ public class AppListActivity extends AppCompatActivity {
             for (PackageInfo packageInfo : list) {
                 if (!(packageManager.getApplicationLabel(packageInfo.applicationInfo).equals("") || packageInfo.packageName.equals(""))) {
                     if ((packageInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 0) {
+                        AppBean appBean = new AppBean();
 
                         // Non System Apps
-                        AppBean appBean = new AppBean();
+
                         appBean.setAppPackage(packageInfo.packageName);
                         appBean.setAppVersion("" + packageInfo.versionName);
                         appBean.setAppName(packageManager.getApplicationLabel(packageInfo.applicationInfo).toString());
@@ -198,32 +250,11 @@ public class AppListActivity extends AppCompatActivity {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
 
-            int from = fromIntent.getIntExtra("from", -1);
 
-            if (from == 1) {
-
-                for (AppBean bean : mAppList) {
-                    AppItem item = new AppItem();
-                    item.setTitle(bean.getAppName());
-                    item.setIcon(bean.getIcon());
-                    item.setContent("");
-                    mList.add(item);
-                }
-            } else {
-                for (AppBean bean : allApps) {
-                    AppItem item = new AppItem();
-                    item.setTitle(bean.getAppName());
-                    item.setIcon(bean.getIcon());
-                    item.setContent("");
-                    mList.add(item);
-                }
-            }
-
-
-            Collections.sort(mList, new Comparator<AppItem>() {
+            Collections.sort(allApps, new Comparator<AppBean>() {
                 @Override
-                public int compare(AppItem appItem, AppItem t1) {
-                    return appItem.getTitle().compareTo(t1.getTitle());
+                public int compare(AppBean appItem, AppBean t1) {
+                    return appItem.getAppName().compareTo(t1.getAppName());
                 }
             });
 
@@ -234,17 +265,22 @@ public class AppListActivity extends AppCompatActivity {
                 }
             });
 
-            appAdapter.notifyDataSetChanged();
+
+            list = getList(from);
+            appAdapter = new AppAdapter(AppListActivity.this, list);
+            mListView.setAdapter(appAdapter);
             progressBar.setVisibility(View.GONE);
 
 
             List<String> appPackages = new ArrayList<>();
 
-            for (int i = 0; i < mAppList.size(); i++) {
-                AppBean bean = mAppList.get(i);
+            for (int i = 0; i < list.size(); i++) {
+                AppBean bean = list.get(i);
                 String appPackage = bean.getAppPackage();
                 appPackages.add(appPackage);
             }
+
+
             AppUtils.getPkgSize(AppListActivity.this, handler, appPackages);
         }
 
@@ -253,5 +289,13 @@ public class AppListActivity extends AppCompatActivity {
             super.onProgressUpdate(values);
 
         }
+    }
+
+    public List<AppBean> getList(int from) {
+
+        if (from == 1) {
+            return mAppList;
+        } else
+            return allApps;
     }
 }

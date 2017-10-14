@@ -107,7 +107,7 @@ public class AboutActivity extends AppCompatActivity {
         mTitle = (TextView) findViewById(R.id.id_title);
         back = (ImageView) findViewById(R.id.id_back);
 
-        mTitle.setText(getResources().getString(R.string.about_phone));
+        mTitle.setText(R.string.about_phone);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

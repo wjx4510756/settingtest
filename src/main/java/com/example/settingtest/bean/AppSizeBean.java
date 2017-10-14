@@ -9,7 +9,7 @@ public class AppSizeBean {
     private String catchSize;
     private String dataSize;
     private String codeSize;
-    private String appSize;
+    private long appSize;
 
     public String getCatchSize() {
         return catchSize;
@@ -35,11 +35,11 @@ public class AppSizeBean {
         this.codeSize = codeSize;
     }
 
-    public String getAppSize() {
+    public long getAppSize() {
         return appSize;
     }
 
-    public void setAppSize(String appSize) {
+    public void setAppSize(long appSize) {
         this.appSize = appSize;
     }
 }

@@ -14,7 +14,7 @@ public class AppBean{
     private Drawable icon;
     private boolean isSystem;
 
-    private String appSize;
+    private long appSize;
     private String catchSize;
     private String dataSize;
     private String codeSize;
@@ -43,11 +43,11 @@ public class AppBean{
         this.codeSize = codeSize;
     }
 
-    public String getAppSize() {
+    public long getAppSize() {
         return appSize;
     }
 
-    public void setAppSize(String appSize) {
+    public void setAppSize(long appSize) {
         this.appSize = appSize;
     }
 
