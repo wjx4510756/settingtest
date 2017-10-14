@@ -62,8 +62,6 @@ public class AppUtils {
             int userID = (Integer) myUserId.invoke(UserHandle.class);
 
             method = pm.getClass().getDeclaredMethod("getPackageSizeInfoAsUser", String.class, int.class, IPackageStatsObserver.class);
-
-
             for (int i = 0; i < pkgNames.size(); i++) {
                 final int finalI = i;
                 method.invoke(pm, pkgNames.get(i), userID, new IPackageStatsObserver.Stub() {
@@ -75,7 +73,6 @@ public class AppUtils {
                             synchronized (AppSizeBean.class) {
 
                                 AppSizeBean appInfo = new AppSizeBean();
-
 
                                 appInfo.setCatchSize(getSize(pStats.cacheSize));//缓存大小
                                 appInfo.setDataSize(getSize(pStats.dataSize));  //数据大小

@@ -1,6 +1,8 @@
 package com.example.settingtest.activities;
 
 import android.Manifest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
@@ -86,9 +88,23 @@ public class MainActivity extends AppCompatActivity {
 
                 } else {
 
+                    AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+                    dialog.setTitle(R.string.permission);
+                    dialog.setMessage(R.string.requestPermission);
+                    dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                        }
+                    });
+                    dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                        }
+                    });
 
                 }
-                return;
             }
         }
     }

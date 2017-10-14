@@ -30,5 +30,7 @@
     <string name="sort_name">按名称排序</string>
     <string name="sort_size">按大小排序</string>
     <string name="app_message">应用程序信息</string>
+    <string name="permission">权限</string>
+    <string name="requestPermission">需要开启系统权限</string>
 </resources>
 
